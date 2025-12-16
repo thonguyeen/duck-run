@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duck Run: Turbo Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&display=swap');
+      
+      body {
+        font-family: 'Fredoka', sans-serif;
+        background-color: #f0f9ff;
+      }
+
+      /* --- Character Animations --- */
+
+      /* Basic Waddle (Used for all characters now) */
+      @keyframes waddle {
+        0% { transform: rotate(-5deg) translateY(0px); }
+        50% { transform: rotate(5deg) translateY(-4px); }
+        100% { transform: rotate(-5deg) translateY(0px); }
+      }
+      .animate-waddle { animation: waddle 0.4s infinite ease-in-out; }
+
+      /* --- Environment Effects --- */
+      .duck-shadow { filter: drop-shadow(0px 4px 2px rgba(0,0,0,0.2)); }
+
+      @keyframes particle-explode {
+        0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg); opacity: 0; }
+      }
+      .particle { animation: particle-explode 1s ease-out forwards; }
+
+      @keyframes pop-in {
+        0% { transform: scale(0.5); opacity: 0; }
+        70% { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .animate-pop-in { animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+      @keyframes shine-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      .animate-spin-slow { animation: shine-rotate 8s linear infinite; }
+
+      @keyframes cloud-move { from { transform: translateX(-150px); } to { transform: translateX(120%); } }
+      .animate-cloud { animation: cloud-move linear infinite; }
+
+      @keyframes wave-move { 0% { background-position-x: 0; } 100% { background-position-x: 50px; } }
+      .animate-wave { animation: wave-move 1s linear infinite; }
+
+      @keyframes tree-sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+      .animate-tree-sway { transform-origin: bottom center; animation: tree-sway 6s ease-in-out infinite; }
+      
+      @keyframes sway { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+      .animate-sway { transform-origin: bottom center; animation: sway 3s ease-in-out infinite; }
+
+      @keyframes float-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+      .animate-float { animation: float-bob 4s ease-in-out infinite; }
+
+      @keyframes tumble {
+        0% { transform: translateX(0vw) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateX(100vw) rotate(720deg); opacity: 0; }
+      }
+      .animate-tumble { animation: tumble 10s linear infinite; }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
